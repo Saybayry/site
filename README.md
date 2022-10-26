@@ -26,7 +26,8 @@
                 █▓▒▒░░░my educational project on the discipline "software development technology"   ░░░▒▒▓█
                 █▓▒▒░░░in it I implement an online art supplies store                               ░░░▒▒▓█
                 █▓▒▒░░░I plan to implement: user registration, shopping cart, category search       ░░░▒▒▓█
-                █▓▒▒░░░                                                                             ░░░▒▒▓█
+                █▓▒▒░░░in the following commits, I'm going to implement a paginator                 ░░░▒▒▓█   
+                █▓▒▒░░░and search via django-filter                                                                         
 
 
 
