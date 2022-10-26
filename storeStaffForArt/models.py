@@ -27,6 +27,7 @@ class productForArt(models.Model):
 ## т.е. дествия происходят после сохранеия модели, я ее повторно вызываю и незначаю в OneToOneField родительскую модель
 ## все дочернии модели я решил делать по данному образцу
 ## уточнение создание дочерней модели создается на оснр=ове таблицы родительсой, и в род модели отображаются своства которые были унасл
+
 class albomForArt(productForArt):
    product_for_art = models.OneToOneField(productForArt , on_delete=models.DO_NOTHING, related_name="albom",blank=True, null=True,editable = False)
    numberOfPages = models.IntegerField(default=10,verbose_name="количество станиц" )
@@ -48,11 +49,11 @@ class paintForArt(productForArt):
    colors = models.IntegerField(default=10,verbose_name="просто поле, что докопался то?" )
    volumePaint = models.IntegerField(default=250 )
    TYPES_OF_PAINT =[
-       ('oil_paint', 'масляная'),
-       ('water_collor', 'акварель'),
-       ('gouache_paint', 'гуаш'),
-       ('acrylic_paint', 'акрил'),
-       ('tempera_paint', 'темпер'),
+       ('oil_paint',    'масляная'     ),
+       ('water_collor', 'акварель'  ),
+       ('gouache_paint', 'гуаш'     ),
+       ('acrylic_paint', 'акрил'    ),
+       ('tempera_paint', 'темпер'   ),
    ]
    typePaint = models.CharField(max_length=30, choices=TYPES_OF_PAINT,
                                 default="oil_paint",verbose_name="тип краски" )
@@ -68,13 +69,31 @@ def calc_ac_total(sender, instance, **kwargs):
         instance.save()
 
 
-class albomForArt(productForArt):
-   product_for_art = models.OneToOneField(productForArt , on_delete=models.DO_NOTHING, related_name="albom",blank=True, null=True,editable = False)
-   numberOfPages = models.IntegerField(default=10,verbose_name="количество станиц" )
+class brashForArt(productForArt):
+   product_for_art = models.OneToOneField(productForArt , on_delete=models.DO_NOTHING, related_name="brash",blank=True, null=True,editable = False)
+   volumeBrash = models.IntegerField(default=10,verbose_name="размер кисти" )
+   TYPES_OF_BRASH =[
+       ("synt","синтетическое"),
+       ("squi",'белка'),
+       ('bris','щетина'),
+       ('goat','коза'),
+       ('pony','пони'),
+       ('сoln','колонок'),
+       ('Sabl' ,'Соболь'),
+       ('Mart','Куница'),
+       ('Tend','ласка'),
+       ('ErHa','ушной волос вола/быка'),
+       ('Mong','Мангуст'),
+       ('Wolf','Волк'),
+       ('Bear','Медведь'),
+       ('Badg','Барсук'),
+   ]
+   typeMaterialBrash = models.CharField(max_length=4, choices=TYPES_OF_BRASH,
+                                default="oil_paint",verbose_name="тип материала кисти" )
    class Meta:
-       verbose_name = u'альбомы и скечбуки'
-       verbose_name_plural = u'альбомы и скечбуки'
-@receiver(post_save, sender=albomForArt)
+       verbose_name = u'кисть'
+       verbose_name_plural = u'кисти'
+@receiver(post_save, sender=brashForArt)
 def calc_ac_total(sender, instance, **kwargs):
     if str(instance.product_for_art) == "None":
         instance.product_for_art = instance.productforart_ptr

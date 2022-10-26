@@ -12,7 +12,11 @@
     {% for productForArt in object_list %}
     <article class="productForArtStartpage" style="background-image: url({{productForArt.pictureProductForArt.url}});">
         <h1>{{productForArt.title}}</h1>
-
+        {% if productForArt.albom %}
+        <p>{{productForArt.albom.numberOfPages}}</p>
+        {% else%}
+        <p>это не альбом</p>
+        {% endif %}
     </article>
     {% endfor %}
 </section> {% else %} <p>товара нету</p>{% endif %}
