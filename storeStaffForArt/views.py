@@ -15,5 +15,9 @@ class startPage(generic.ListView):
         context['filter'] = productForArtFilters(self.request.GET,queryset=self.get_queryset())
         return context
 
+class productForArtDetalsview(generic.DeleteView):
+    model = productForArt
+    template_name = "ProductCard.html"
+
 def pageInwork(request, *args, **kwargs):
     return  render(request, "pageInwork.html", {})
