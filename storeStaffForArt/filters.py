@@ -7,4 +7,4 @@ class productForArtFilters(django_filters.FilterSet):
     titleFiltrt = django_filters.Filter(field_name='title',lookup_expr='icontains')
     class Meta:
         model = productForArt
-        fields = ['min_price', 'max_price', 'titleFiltrt' ]
+        fields = ['min_price', 'max_price', 'titleFiltrt']
