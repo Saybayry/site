@@ -7,15 +7,40 @@
 
 </head>
 <body>
-    <header class="headerStartpage"> <a class="headerlist" href="{% url 'storeStaffForArt:startpage'  %}"> товары для творчества</a> <a class="headerlist" href="{% url 'storeStaffForArt:startpage'  %}"> все товары</a>  <a class="headerlist" href="{% url 'storeStaffForArt:pageInwork'  %}"">корзина</a> <a class="headerlist" href="{% url 'storeStaffForArt:pageInwork'  %}">войти</a> </header>
- 
-<div class="pageinwork404">
-    <div>
-        <h1 class="pageinwork">Страница находится в разработке</h1>
+    <div class="b-example-divider"></div>
+
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <a href="https://getbootstrap.com/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{% url 'storeStaffForArt:startpage'  %}" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="{% url 'storeStaffForArt:startpage'  %}" class="nav-link px-2 link-dark">Товары</a></li>
+        <li><a href="{% url 'storeStaffForArt:startpage'  %}" class="nav-link px-2 link-dark">Категории</a></li>
+        <li><a href="{% url 'storeStaffForArt:pageInwork'  %}" class="nav-link px-2 link-dark">About</a></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2">Login</button>
+        <button type="button" class="btn btn-primary">Sign-up</button>
+      </div>
+    </header>
+  </div>
+  <div class="b-example-divider"></div>
 
 
-    </div>
-</div>   
+        <div class="d-flex align-items-center justify-content-center vh-100">
+            <div class="text-center">
+                <h1 class="display-1 fw-bold">404</h1>
+                <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>
+                <p class="lead">
+                    Данная страница находится в разработке
+                  </p>
+                <a href="{% url 'storeStaffForArt:startpage'  %}" class="btn btn-primary">Go Home</a>
+            </div>
+        </div>
 
 </body>
 
