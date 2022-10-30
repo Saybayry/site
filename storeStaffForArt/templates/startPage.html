@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
    {% load bootstrap %}
-    
+
+
+
+
+
+
+
+
+
+
+
+
     {% if productForArt_list %}
     <section class="productsStartpage">
         <p>
@@ -19,7 +30,8 @@
         </div>
 
 <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-    {% for productForArt in filter.qs %}
+    {% for productForArt in object_list|dictsort:"id" reversed %}
+
 <div class="card" style="width: 18rem;margin: 10px">
     <div style="height: 180px; width: 286px; background-image: url({{ productForArt.pictureProductForArt.url }}); background-size: cover;
   background-position: center;" ></div>
@@ -27,12 +39,79 @@
   <div class="card-body">
     <h5 class="card-title">{{ productForArt.title }}</h5>
     <p class="card-text">{{ productForArt.description }}</p>
-    <a href="/command/{{ card.id }}/color" class="btn btn-primary">в карзину</a>
+    <a href="det/{{productForArt.title}}" class="btn btn-primary">в карзину</a>
     <a href="/{{productForArt.id}}" class="btn btn-primary">подробнее</a>
   </div>
 </div>
-
     {% endfor %}
+ {% load spurl %}
+
+
+
+
+
+
+
+
+
+<div class="container">
+    {% load my_tags %}
+
+{% if is_paginated %}
+     <nav aria-label="Пример навигации по страницам">
+         <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+                 <li class="page-item ">
+                     <a class="page-link" href="?{% param_replace page=1 %}">1</a>
+                 </li>
+                 {% if page_obj.previous_page_number != 1 %}
+                     <li class="page-item ">
+                         <a class="page-link" href="?{% param_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }} </a>
+                     </li>
+                 {% endif %}
+             {% endif %}
+        <li class="page-item">
+             <a class="page-link disabled" href="">  {{ page_obj.number }}</a>
+        </li>
+
+              {% if page_obj.has_next %}
+                {% if page_obj.next_page_number != paginator.num_pages %}
+         <li class="page-item">
+             <a class="page-link" href="?{% param_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+                {% endif %}
+         </li>
+         <li class="page-item">
+             <a class="page-link" href="?{% param_replace page=paginator.num_pages %}">{{ paginator.num_pages }}</a>
+              {% endif %}
+         </li>
+        </ul>
+    </nav>
+{% endif %}
+
+
+
+
+
+ {% if is_paginated %}
+<!-- <nav aria-label="Пример навигации по страницам">-->
+<!--  <ul class="pagination justify-content-center">-->
+
+<!--    <li class="page-item ">-->
+<!--        {% if page_obj.has_previous %}-->
+<!--      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" >Предыдущая</a>-->
+<!--    </li>-->
+<!--      {% endif %}-->
+<!--    <li class="page-item disabled" style="padding:10px;" > <a class="page-link disabled" href="#">страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</a> </li>-->
+<!--        {% if page_obj.has_next %}-->
+<!--      <li class="page-item">-->
+<!--      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следующая</a>-->
+<!--      {% endif %}-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</nav>-->
+</div>
+    {% endif %}
+
   </div>
 </section> {% else %} <p>товара нету</p>{% endif %}
 {% endblock content %}

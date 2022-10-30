@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storeStaffForArt',
     'django_filters',
+    'spurl',
     'bootstrapform'
 
 ]
@@ -71,7 +72,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
+            'libraries': {
+                'my_templatetag': 'storeStaffForArt.templatetags.my_tags',
+
+            }
+
         },
     },
 ]
