@@ -29,18 +29,22 @@
           </div>
         </div>
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; ">
     {% for productForArt in object_list|dictsort:"id" reversed %}
 
-<div class="card" style="width: 18rem;margin: 10px">
+<div class="card" style="width: 18rem;margin: 10px; height:400px; ">
     <div style="height: 180px; width: 286px; background-image: url({{ productForArt.pictureProductForArt.url }}); background-size: cover;
   background-position: center;" ></div>
   <!-- <img class="card-img-top" src="{{ productForArt.pictureProductForArt.url }}" alt="Card image cap"> -->
   <div class="card-body">
-    <h5 class="card-title">{{ productForArt.title }}</h5>
-    <p class="card-text">{{ productForArt.description }}</p>
-    <a href="det/{{productForArt.title}}" class="btn btn-primary">в карзину</a>
-    <a href="/{{productForArt.id}}" class="btn btn-primary">подробнее</a>
+    <div >
+        <h5 class="card-title">{{ productForArt.title }}</h5>
+        <p class="card-text">{{ productForArt.description }}</p>
+    </div>
+    <div style="position: absolute;bottom: 10px;">
+        <a href="det/{{productForArt.title}}" class="btn btn-primary">в карзину</a>
+        <a href="/{{productForArt.id}}" class="btn btn-primary">подробнее</a>
+    </div>
   </div>
 </div>
     {% endfor %}
@@ -52,11 +56,13 @@
 
 
 
-
+<!--    тут прикручивается пагинация способная работать вместе с поиском использывал -->
+<!--    https://stackoverflow.com/questions/64618631/how-to-filter-and-paginate-in-listview-django-->
+<!--    еще одна статья чтобы отфильтрованное можно было пагинирывать-->
+<!--    https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/-->
 
 <div class="container">
     {% load my_tags %}
-
 {% if is_paginated %}
      <nav aria-label="Пример навигации по страницам">
          <ul class="pagination justify-content-center">

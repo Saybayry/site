@@ -47,7 +47,7 @@ def calc_ac_total(sender, instance, **kwargs):
 class paintForArt(productForArt):
    product_for_art = models.OneToOneField(productForArt , on_delete=models.DO_NOTHING, related_name="paint",blank=True, null=True,editable = False)
    colors = models.IntegerField(default=10,verbose_name="просто поле, что докопался то?" )
-   volumePaint = models.IntegerField(default=250 )
+   volumePaint = models.IntegerField(default=250 ,verbose_name="объём в мл")
    TYPES_OF_PAINT =[
        ('oil_paint',    'масляная'     ),
        ('water_collor', 'акварель'  ),
